@@ -69,4 +69,20 @@ const post = [
   ];
 
 const container = document.getElementById('container');
+//checkLike usato per evitare di mettere più di un like alla stesso post
+const checkLike = [false, false, false];
 addPost(post, container);
+
+const button = document.querySelectorAll("a.like-button.js-like-button");
+console.log(post.length);
+
+for (let i=0; i<post.length; i++) {
+    button[i].addEventListener ('click', function () {
+        if (checkLike[i] == false) {
+            const container = document.getElementById('container');
+            post[i].like = post[i].like+1;
+            console.log(post[i].like);  
+            checkLike[i] = true;
+        }
+    });
+}
