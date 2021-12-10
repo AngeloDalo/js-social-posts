@@ -71,17 +71,24 @@ const post = [
 const container = document.getElementById('container');
 //checkLike usato per evitare di mettere più di un like alla stesso post
 const checkLike = [false, false, false];
+//funzione che genera post
 addPost(post, container);
-
+//selezione di tutti i bottoni con i like
 const button = document.querySelectorAll("a.like-button.js-like-button");
-console.log(post.length);
+//div contenente i numero di like
+const likeCounter = document.querySelectorAll(".likes__counter");
 
 for (let i=0; i<post.length; i++) {
     button[i].addEventListener ('click', function () {
+        //controllo per evitare di mettere più like sulla stessa foto
         if (checkLike[i] == false) {
-            const container = document.getElementById('container');
+            //eliminiamo il conteggio precedente di like
+            likeCounter[i].innerHTML = "";
+            //aumentiamo il numero di like
             post[i].like = post[i].like+1;
-            console.log(post[i].like);  
+            //cambaimo nel html il numero di like
+            const likeUpdate =  `Piace a <b id="like-counter-1" class="js-likes-counter">${post[i].like}</b> persone`;
+            likeCounter[i].innerHTML += likeUpdate;
             checkLike[i] = true;
         }
     });
